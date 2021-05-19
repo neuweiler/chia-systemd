@@ -1,0 +1,16 @@
+[Unit]
+Description=Chia Service
+
+Wants=network.target
+After=syslog.target network-online.target
+
+[Service]
+Type=forking
+RemainAfterExit=true
+EnvironmentFile=-/etc/default/chia
+ExecStart=/usr/local/bin/chia-service start
+ExecStop=/usr/local/bin/chia-service stop
+User=chia
+
+[Install]
+WantedBy=multi-user.target

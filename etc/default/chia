@@ -1,0 +1,20 @@
+# Specify which chia services are to be started
+# NOTE: They will be started as user 'chia' which has to be created beforehand
+CHIA_START_WALLET=true
+CHIA_START_NODE=true
+CHIA_START_HARVESTER=true
+CHIA_START_FARMER=false
+CHIA_START_TIMELORD=false
+
+# Specify which plotman services are to be started
+# NOTE: They will be spawned in their own 'screen' instance labelled 'plot' and 'archive'
+#       They are accessible via 'screen -r plot' or 'screen -r archive'
+PLOTMAN_START_PLOT=true
+PLOTMAN_START_ARCHIVE=false
+
+# The location of the chia installation
+CHIA_HOME=/home/chia/chia-blockchain
+
+# The command to clean-up the tmp fold
+#ers when the service is stopped (to prevent orphaned temp plotter files)
+CHIA_CLEANUP_CMD="rm /data/tmp/*/*"
