@@ -6,8 +6,12 @@ CHIA_START_HARVESTER=true
 CHIA_START_FARMER=false
 CHIA_START_TIMELORD=false
 
+# Specify if MadMax plotter should be started
+# NOTE: It will be spawned in its own 'screen' instance labelled 'plot'
+MADMAX_START_PLOT=true
+
 # Specify which plotman services are to be started
-# NOTE: They will be spawned in their own 'screen' instance labelled 'plot' and 'archive'
+# NOTE: They will be spawned in their own 'screen' instance labelled 'plotman' and 'archive'
 #       They are accessible via 'screen -r plot' or 'screen -r archive'
 PLOTMAN_START_PLOT=true
 PLOTMAN_START_ARCHIVE=false

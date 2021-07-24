@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $CHIA_HOME/activate
+test -s $CHIA_HOME/activate && source $CHIA_HOME/activate
 
 case "$1" in
   start)
@@ -10,13 +10,15 @@ case "$1" in
     if $CHIA_START_HARVESTER; then $CHIA_HOME/venv/bin/chia start harvester; fi
     if $CHIA_START_FARMER; then $CHIA_HOME/venv/bin/chia start farmer-only; fi
     if $CHIA_START_TIMELORD; then $CHIA_HOME/venv/bin/chia start timelord-only; fi
-    if $PLOTMAN_START_PLOT; then screen -S plot -d -m plotman plot; fi
+    if $PLOTMAN_START_PLOT; then screen -S plotman -d -m plotman plot; fi
     if $PLOTMAN_START_ARCHIVE; then screen -S archive -d -m plotman archive; fi
+    if $MADMAX_START_PLOT; then ~/bin/plot.sh ; fi
   ;;
   stop)
     echo "chia.service ## Stopping ##" | systemd-cat -p info
     $CHIA_HOME/venv/bin/chia stop all -d
     killall plotman
+    killall chia_plot
     if [ -v CHIA_CLEANUP_CMD ]; then $CHIA_CLEANUP_CMD; fi
   ;;
 esac
